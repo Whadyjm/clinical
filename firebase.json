@@ -1,0 +1,34 @@
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "clinical-6802c",
+          "appId": "1:881609309616:android:dd3fb83214faadc7246a75",
+          "fileOutput": "android/app/google-services.json"
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "clinical-6802c",
+          "configurations": {
+            "android": "1:881609309616:android:dd3fb83214faadc7246a75",
+            "ios": "1:881609309616:ios:f3e3b4f0ca50c27b246a75",
+            "macos": "1:881609309616:ios:f3e3b4f0ca50c27b246a75",
+            "web": "1:881609309616:web:a061d0cabf53e162246a75",
+            "windows": "1:881609309616:web:45d4c3602ad59c5e246a75"
+          }
+        }
+      }
+    }
+  },
+  "hosting": {
+    "site": "clinicalonline",
+    "public": "build/web",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
