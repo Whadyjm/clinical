@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         //colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
-      home: const Login(),
+      home: const Login(), //TODO: verificar usuario activo, if(true) ---> abrir Inicio();
     );
   }
 }

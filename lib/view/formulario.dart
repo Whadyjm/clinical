@@ -1,3 +1,6 @@
+import 'package:clinical/widgets/pregunta.dart';
+import 'package:clinical/widgets/preguntaView.dart';
+import 'package:clinical/widgets/siONo.dart';
 import 'package:clinical/widgets/textForm.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -160,12 +163,44 @@ class _FormularioState extends State<Formulario> {
             fontStyle: FontStyle.normal,
           ),
         ), content: Center(
-      child: Text(
-        'Historial clínico',
-        style: GoogleFonts.montserrat(
-          fontSize: 15,
-          fontWeight: FontWeight.w500,
-          fontStyle: FontStyle.normal,
+      child: SizedBox(
+        height: 200,
+        width: 300,
+        child: PageView( //TODO: enumeración
+          children: [
+            PreguntaView(context: context, text: '¿Esta bajo tratamiento médico?',),
+            PreguntaView(context: context, text: '¿Actualmente toma algún medicamento?',),
+            PreguntaView(context: context, text: '¿Le han practicado alguna intervención quirúrgica?',),
+            PreguntaView(context: context, text: '¿Ha recibido alguna transfusión sanguínea?',),
+            PreguntaView(context: context, text: '¿Ha consumido o consume drogas?',),
+            PreguntaView(context: context, text: '¿Ha presentado reacción alérgica a la Penicilina?',),
+            PreguntaView(context: context, text: '¿Ha presentado reacción alérgica a la Anestesia?',),
+            PreguntaView(context: context, text: '¿Ha presentado reacción alérgica a: Aspirina, Yodo, Merthiolate, entre otros?',),
+            PreguntaView(context: context, text: '¿Sufre de tensión arterial alta?',),
+            PreguntaView(context: context, text: '¿Sufre de tensión arterial baja?',),
+            PreguntaView(context: context, text: '¿Sangra excesivamente al cortarse?',),
+            PreguntaView(context: context, text: '¿Padece o ha padecido de algún problema sanguíneo? (Anemia, leucemia, entre otros)',),
+            PreguntaView(context: context, text: '¿Es usted VIH positivo?',),
+            PreguntaView(context: context, text: '¿Toma algún medicamento retroviral?',),
+            PreguntaView(context: context, text: '¿Esta usted embarazada?',),
+            PreguntaView(context: context, text: '¿Actualmente toma pastillas anticonceptivas?',),
+            PreguntaView(context: context, text: '¿Sufre o ha sufrido de enfermedades venéreas?',),
+            PreguntaView(context: context, text: '¿Sufre o ha sufrido de problemas del corazón?',),
+            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Hepatitis Tipo A, B o C?',),
+            PreguntaView(context: context, text: '¿Sufre o ha sufrido de fiebre reumática?',),
+            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Asma?',),
+            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Diábetes?',),
+            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Úlcera gástrica?',),
+            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Tiroides?',),
+            PreguntaView(context: context, text: '¿Ha tenido limitación al abrir o cerrar la boca?',),
+            PreguntaView(context: context, text: '¿Siente ruidos en la mandibula al abrir o cerrar la boca?',),
+            PreguntaView(context: context, text: '¿Sufre de herpes o aftas recurrentes?',),
+            PreguntaView(context: context, text: '¿Tiene hábito de morderse las uñas o labios?',),
+            PreguntaView(context: context, text: '¿Tiene hábito de fumar a diario?',),
+            PreguntaView(context: context, text: '¿Tiene hábito de consumir alimentos cítricos?',),
+            PreguntaView(context: context, text: '¿Tiene hábito de apretamiento dentario?',),
+            PreguntaView(context: context, text: '¿Tiene hábito de respiración bucal?',),
+          ],
         ),
       ),
     )),
@@ -228,34 +263,39 @@ class _FormularioState extends State<Formulario> {
                         (BuildContext context, ControlsDetails details) {
                       return Padding(
                         padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children:[
-                            Container(
-                              height: 40,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8)
-                              ),
-                              child: TextButton(
-                                onPressed: details.onStepContinue,
-                                child: const Center(child: Text('Siguiente', )),
-                              ),
+                        child: Column(
+                          children: [
+                            const SizedBox(height: 40,),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children:[
+                                Container(
+                                  height: 40,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8)
+                                  ),
+                                  child: TextButton(
+                                    onPressed: details.onStepContinue,
+                                    child: const Center(child: Text('Siguiente', )),
+                                  ),
+                                ),
+                                Container(
+                                  height: 40,
+                                  width: 100,
+                                  decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(8)
+                                  ),
+                                  child: TextButton(
+                                    onPressed: details.onStepCancel,
+                                    child: const Center(child: Text('Anterior', )),
+                                  ),
+                                ),
+                              ]
                             ),
-                            Container(
-                              height: 40,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  color: Colors.white,
-                                  borderRadius: BorderRadius.circular(8)
-                              ),
-                              child: TextButton(
-                                onPressed: details.onStepCancel,
-                                child: const Center(child: Text('Anterior', )),
-                              ),
-                            ),
-                          ]
+                          ],
                         ),
                       );
                     },
@@ -329,3 +369,4 @@ class _FormularioState extends State<Formulario> {
     );
   }
 }
+

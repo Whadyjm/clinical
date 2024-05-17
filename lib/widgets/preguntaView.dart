@@ -1,0 +1,30 @@
+import 'package:clinical/widgets/pregunta.dart';
+import 'package:clinical/widgets/siONo.dart';
+import 'package:flutter/material.dart';
+
+class PreguntaView extends StatelessWidget {
+  const PreguntaView({
+    super.key,
+    required this.context,
+    required this.text,
+  });
+
+  final BuildContext context;
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+        height: 60,
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Pregunta(pregunta: text,),
+            const SizedBox(height: 40,),
+            const SiONo(),
+          ],
+        )
+    );
+  }
+}
