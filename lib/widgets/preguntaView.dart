@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 class PreguntaView extends StatelessWidget {
   const PreguntaView({
     super.key,
-    required this.context,
     required this.text,
+    required this.numberPage,
   });
 
-  final BuildContext context;
   final String text;
+  final String numberPage;
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +20,15 @@ class PreguntaView extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text(numberPage),
+                ],
+              ),
+            ),
             Pregunta(pregunta: text,),
             const SizedBox(height: 40,),
             const SiONo(),

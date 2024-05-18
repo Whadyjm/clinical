@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_holo_date_picker/flutter_holo_date_picker.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -41,6 +42,8 @@ class _FormularioState extends State<Formulario> {
     }
   }
 
+  final PageController controller = PageController(initialPage: 0);
+  late int currentPage = 0;
 
   List <Step> stepList() => [
 
@@ -163,45 +166,79 @@ class _FormularioState extends State<Formulario> {
             fontStyle: FontStyle.normal,
           ),
         ), content: Center(
-      child: SizedBox(
-        height: 200,
-        width: 300,
-        child: PageView( //TODO: enumeración
-          children: [
-            PreguntaView(context: context, text: '¿Esta bajo tratamiento médico?',),
-            PreguntaView(context: context, text: '¿Actualmente toma algún medicamento?',),
-            PreguntaView(context: context, text: '¿Le han practicado alguna intervención quirúrgica?',),
-            PreguntaView(context: context, text: '¿Ha recibido alguna transfusión sanguínea?',),
-            PreguntaView(context: context, text: '¿Ha consumido o consume drogas?',),
-            PreguntaView(context: context, text: '¿Ha presentado reacción alérgica a la Penicilina?',),
-            PreguntaView(context: context, text: '¿Ha presentado reacción alérgica a la Anestesia?',),
-            PreguntaView(context: context, text: '¿Ha presentado reacción alérgica a: Aspirina, Yodo, Merthiolate, entre otros?',),
-            PreguntaView(context: context, text: '¿Sufre de tensión arterial alta?',),
-            PreguntaView(context: context, text: '¿Sufre de tensión arterial baja?',),
-            PreguntaView(context: context, text: '¿Sangra excesivamente al cortarse?',),
-            PreguntaView(context: context, text: '¿Padece o ha padecido de algún problema sanguíneo? (Anemia, leucemia, entre otros)',),
-            PreguntaView(context: context, text: '¿Es usted VIH positivo?',),
-            PreguntaView(context: context, text: '¿Toma algún medicamento retroviral?',),
-            PreguntaView(context: context, text: '¿Esta usted embarazada?',),
-            PreguntaView(context: context, text: '¿Actualmente toma pastillas anticonceptivas?',),
-            PreguntaView(context: context, text: '¿Sufre o ha sufrido de enfermedades venéreas?',),
-            PreguntaView(context: context, text: '¿Sufre o ha sufrido de problemas del corazón?',),
-            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Hepatitis Tipo A, B o C?',),
-            PreguntaView(context: context, text: '¿Sufre o ha sufrido de fiebre reumática?',),
-            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Asma?',),
-            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Diábetes?',),
-            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Úlcera gástrica?',),
-            PreguntaView(context: context, text: '¿Sufre o ha sufrido de Tiroides?',),
-            PreguntaView(context: context, text: '¿Ha tenido limitación al abrir o cerrar la boca?',),
-            PreguntaView(context: context, text: '¿Siente ruidos en la mandibula al abrir o cerrar la boca?',),
-            PreguntaView(context: context, text: '¿Sufre de herpes o aftas recurrentes?',),
-            PreguntaView(context: context, text: '¿Tiene hábito de morderse las uñas o labios?',),
-            PreguntaView(context: context, text: '¿Tiene hábito de fumar a diario?',),
-            PreguntaView(context: context, text: '¿Tiene hábito de consumir alimentos cítricos?',),
-            PreguntaView(context: context, text: '¿Tiene hábito de apretamiento dentario?',),
-            PreguntaView(context: context, text: '¿Tiene hábito de respiración bucal?',),
-          ],
-        ),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 250,
+            width: 350,
+            child: PageView(
+              physics: const NeverScrollableScrollPhysics(),
+              controller: controller,
+              children: const [
+                PreguntaView(text: '¿Esta bajo tratamiento médico?', numberPage: '1/32',),
+                PreguntaView(text: '¿Actualmente toma algún medicamento?', numberPage: '2/32',),
+                PreguntaView(text: '¿Le han practicado alguna intervención quirúrgica?', numberPage: '3/32',),
+                PreguntaView(text: '¿Ha recibido alguna transfusión sanguínea?', numberPage: '4/32',),
+                PreguntaView(text: '¿Ha consumido o consume drogas?', numberPage: '5/32',),
+                PreguntaView(text: '¿Ha presentado reacción alérgica a la Penicilina?', numberPage: '6/32',),
+                PreguntaView(text: '¿Ha presentado reacción alérgica a la Anestesia?', numberPage: '7/32',),
+                PreguntaView(text: '¿Ha presentado reacción alérgica a: Aspirina, Yodo, Merthiolate, entre otros?', numberPage: '8/32',),
+                PreguntaView(text: '¿Sufre de tensión arterial alta?', numberPage: '9/32',),
+                PreguntaView(text: '¿Sufre de tensión arterial baja?', numberPage: '10/32',),
+                PreguntaView(text: '¿Sangra excesivamente al cortarse?', numberPage: '11/32',),
+                PreguntaView(text: '¿Padece o ha padecido de algún problema sanguíneo? (Anemia, leucemia, entre otros)', numberPage: '12/32',),
+                PreguntaView(text: '¿Es usted VIH positivo?', numberPage: '13/32',),
+                PreguntaView(text: '¿Toma algún medicamento retroviral?', numberPage: '14/32',),
+                PreguntaView(text: '¿Esta usted embarazada?', numberPage: '15/32',),
+                PreguntaView(text: '¿Actualmente toma pastillas anticonceptivas?', numberPage: '16/32',),
+                PreguntaView(text: '¿Sufre o ha sufrido de enfermedades venéreas?', numberPage: '17/32',),
+                PreguntaView(text: '¿Sufre o ha sufrido de problemas del corazón?', numberPage: '18/32',),
+                PreguntaView(text: '¿Sufre o ha sufrido de Hepatitis Tipo A, B o C?', numberPage: '19/32',),
+                PreguntaView(text: '¿Sufre o ha sufrido de fiebre reumática?', numberPage: '20/32',),
+                PreguntaView(text: '¿Sufre o ha sufrido de Asma?', numberPage: '21/32',),
+                PreguntaView(text: '¿Sufre o ha sufrido de Diábetes?', numberPage: '22/32',),
+                PreguntaView(text: '¿Sufre o ha sufrido de Úlcera gástrica?', numberPage: '23/32',),
+                PreguntaView(text: '¿Sufre o ha sufrido de Tiroides?', numberPage: '24/32',),
+                PreguntaView(text: '¿Ha tenido limitación al abrir o cerrar la boca?', numberPage: '25/32',),
+                PreguntaView(text: '¿Siente ruidos en la mandibula al abrir o cerrar la boca?', numberPage: '26/32',),
+                PreguntaView(text: '¿Sufre de herpes o aftas recurrentes?', numberPage: '27/32',),
+                PreguntaView(text: '¿Tiene hábito de morderse las uñas o labios?', numberPage: '28/32',),
+                PreguntaView(text: '¿Tiene hábito de fumar a diario?', numberPage: '29/32',),
+                PreguntaView(text: '¿Tiene hábito de consumir alimentos cítricos?', numberPage: '30/32',),
+                PreguntaView(text: '¿Tiene hábito de apretamiento dentario?', numberPage: '31/32',),
+                PreguntaView(text: '¿Tiene hábito de respiración bucal?', numberPage: '32/32',),
+              ],
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Visibility(
+                visible: currentPage == 0 ? false:true,
+                child: IconButton(
+                    onPressed: (){
+                      controller.previousPage(duration: const Duration(seconds: 1), curve: Curves.ease);
+                      setState(() {
+                        currentPage --;
+                      });
+                    },
+                    icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+              ),
+              Visibility(
+                visible: currentPage == 31 ? false:true,
+                child: IconButton(
+                    onPressed: (){
+                      controller.nextPage(duration: const Duration(seconds: 1), curve: Curves.ease);
+                      setState(() {
+                        currentPage ++;
+                      });
+                    },
+                    icon: const Icon(Icons.arrow_forward_ios_rounded)),
+              ),
+            ],
+          ),
+          const SizedBox(height: 50,)
+        ],
       ),
     )),
 
