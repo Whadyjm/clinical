@@ -1,55 +1,48 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class SiONo extends StatelessWidget {
-  const SiONo({
+  SiONo({
     super.key,
+    this.onTapYes,
+    this.onTapNo,
   });
+
+  void Function()? onTapYes;
+  void Function()? onTapNo;
 
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        GestureDetector(
-          child: Container(
-            height: 70,
-            width: 100,
-            decoration: BoxDecoration(
-                color: Colors.green.shade300,
-                borderRadius: const BorderRadius.only(topLeft: Radius.circular(50), bottomLeft: Radius.circular(50))
-            ),
-            child: Center(
-              child: Text(
-                'SI',
-                style: GoogleFonts.montserrat(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  fontStyle: FontStyle.normal,
-                ),
-              ),
+        MaterialButton(
+          height: 70,
+          minWidth: 100,
+          color: Colors.green.shade300,
+          onPressed: onTapYes,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+          child: Text(
+            'SI',
+            style: GoogleFonts.montserrat(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.normal,
             ),
           ),
         ),
-        GestureDetector(
-          child: Container(
-            height: 70,
-            width: 100,
-            decoration: BoxDecoration(
-                color: Colors.red.shade300,
-                borderRadius: const BorderRadius.only(topRight: Radius.circular(50), bottomRight: Radius.circular(50))
-            ),
-            child: Center(
-              child: Text(
-                'No',
-                style: GoogleFonts.montserrat(
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  fontStyle: FontStyle.normal,
-                ),
-              ),
+        MaterialButton(
+          height: 70,
+          minWidth: 100,
+          color: Colors.red.shade300,
+          onPressed: onTapNo,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
+          child: Text(
+            'No',
+            style: GoogleFonts.montserrat(
+              fontSize: 18,
+              fontWeight: FontWeight.w500,
+              fontStyle: FontStyle.normal,
             ),
           ),
         ),
